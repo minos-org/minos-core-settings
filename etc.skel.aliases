@@ -1,0 +1,12 @@
+#This file is part of the minos-core-settings package
+
+[ -f "$(command -v "wcd")" ]       && alias cd='. wcd'
+[ -f "$(command -v "trash")" ]     && alias rm='trash'
+[ -f "$(command -v "xdg-open")" ]  && alias open='xdg-open'
+[ -f "${HOME}/.irssi/config.gpg" ] && alias irssi='irssi --config=<(gpg -d "${HOME}"/.irssi/config.gpg)'
+[ -f "${HOME}/.mailgun.gpg" ]      && alias mailgun='mailgun --config <(gpg -d "${HOME}"/.mailgun.gpg)'
+[ -f "${HOME}/.pagekite.rc.gpg" ]  && alias pagekite='pagekite --optfile=<(gpg -d "${HOME}"/.pagekite.rc.gpg)'
+
+alias eix.exact='eix --exact'
+
+#  vim: set ts=8 sw=4 tw=0 ft=conf :
