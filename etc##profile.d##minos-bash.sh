@@ -7,7 +7,7 @@
 #do nothing if not running interactively
 [ -z "${PS1}" ] && return
 
-set -o vi     #this is sparta!
+set -o vi #this is sparta!
 stty -ctlecho #don't show ^C when pressing Ctrl+C
 
 #http://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
@@ -15,17 +15,19 @@ stty -ctlecho #don't show ^C when pressing Ctrl+C
 shopt -s checkhash checkwinsize cmdhist expand_aliases histreedit mailwarn
 shopt -s hostcomplete histappend histverify
 
-bind "set match-hidden-files off"    #don't match hidden files
-bind "set bind-tty-special-chars on" #punctuations are not word delimiters
-bind "set show-all-if-ambiguous on"  #enable single tab completion
+bind "set match-hidden-files off"     #don't match hidden files
+bind "set bind-tty-special-chars on"  #punctuations are not word delimiters
+bind "set show-all-if-ambiguous on"   #enable single tab completion
 bind "set completion-ignore-case on"
 
 #===============================================================================
 #=============================== Environment  ==================================
 #===============================================================================
 
-export PATH="/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/games"
+export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin/X11:/usr/games"
+
 export GPG_TTY="$(tty)"
+
 export EDITOR="editor"
 export CSCOPE_EDITOR="editor"
 export WCDHOME="${HOME}/.wcd"

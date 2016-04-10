@@ -25,15 +25,6 @@ if [ -f ~/.shundle/bundle/shundle/shundle ]; then
         #ALIAZATOR_CLOUD="url"
     Bundle="gh:chilicuil/shundle-plugins/autocd"
         #AUTOCD_FILE="/tmp/autocd.59YlpZ50"
-
-   #from non GitHub
-   #Bundle='git://git.domain.com/rep.git'
-
-   #from the web
-   #Bundle='http://domain.com/awesome-script'
-
-   #from the file system
-   #Bundle='file://path/to/script'
 else
     alias shundle-install='git clone --depth=1 \
     https://github.com/chilicuil/shundle ~/.shundle/bundle/shundle && \

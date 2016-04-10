@@ -1,21 +1,28 @@
 ## About
 
-This repository provides the minimal settings which gives to minos its identity. It's intend to be installed in all environments, even environments without graphic interface. Some of these changes affect:
+This repository provides minimal settings which gives to minos its identity. It's intend to be installed in all environments, even those without graphic interface. Some of the changes affect:
 
 - Skel default files:
- - `.bash_profile` (add gpg-agent/tmux autolaunchers)
- - `.aliases` (replace cd, rm and other core system applications with minos wrappers)
- - `.profile.d/shundle.sh` (shundle integration)
- - `.tmux.conf` (tmux/tundle integration)
- - `.vimrc` (default vim configuration)
+ - `.bash_profile`: add gpg-agent/tmux autolaunchers
+ - `.aliases`: replace cd, rm and other core system applications with minos wrappers
+ - `.profile.d/shundle.sh`: shundle integration
+ - `.tmux.conf`: tmux/tundle integration
+ - `.vimrc`: vim configuration
 
 - Sudo settings:
  - turn on sudo insults
  - set a longer (1hr) timeout
- - add subgroups to bypass password authentication for shutdown/hibernate/wakeup ...
+ - bypass password authentication for shutdown/hibernate/wakeup
+
+- Ssh:
+ - connection sharing, improve performance and general resiliance
 
 - Bash
- - advanced bash settings and 'vi' as default readline mode
+ - autocompletion enhancement
+ - 'vi' as default readline mode
+
+- Motd
+ - modify message of the day and other personality files
 
 ## Quick start
 

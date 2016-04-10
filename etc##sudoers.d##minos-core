@@ -6,6 +6,6 @@ Cmnd_Alias MINOS_SESSION=/usr/sbin/pm-suspend,/usr/sbin/pm-hibernate,/sbin/shutd
 Cmnd_Alias MINOS_BACKUP=/usr/bin/backup_remote_rsync
 Cmnd_Alias WAKEUP=/usr/sbin/rtcwake
 
-# Members of the sudo group may use these commands without passwd
+#Members of the sudo group can use these commands without passwd
 %sudo ALL=(root) NOPASSWD:MINOS_SESSION,MINOS_BACKUP
 %sudo ALL=(root) NOPASSWD:WAKEUP
