@@ -253,15 +253,14 @@ if !isdirectory(expand("~/.vim/bundle/vundle/.git/"))
         silent !git clone --depth=1 https://github.com/chilicuil/vundle.git ~/.vim/bundle/vundle
         if isdirectory(expand("~/.vim/bundle/vundle/.git/"))
             echon "Run :BundleInstall to finish the installation"
-            fi
-        else
-            echon "Setting up vundle, this may take a while, wanna continue? (y/n): "
-            if nr2char(getchar()) ==? 'y'
-                "!git clone --depth=1 https://github.com/chilicuil/vundle-legacy.git ~/.vim/bundle/vundle
-                silent !git clone --depth=1 https://github.com/chilicuil/vundle.git ~/.vim/bundle/vundle
-                silent !printf "Installing vundle plugins ..."
-                silent !vim -es -u "${MYVIMRC}" -c "BundleInstall" -c qa
-            endif
+        endif
+    else
+        echon "Setting up vundle, this may take a while, wanna continue? (y/n): "
+        if nr2char(getchar()) ==? 'y'
+            "!git clone --depth=1 https://github.com/chilicuil/vundle-legacy.git ~/.vim/bundle/vundle
+            silent !git clone --depth=1 https://github.com/chilicuil/vundle.git ~/.vim/bundle/vundle
+            silent !printf "Installing vundle plugins ..."
+            silent !vim -es -u "${MYVIMRC}" -c "BundleInstall" -c qa
         endif
     endif
 endif
