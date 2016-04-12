@@ -1,7 +1,7 @@
 #!/bin/sh
 . /etc/os-release 2>/dev/null
 if [ -z "$VERSION_ID" ]; then
-    printf "Welcome to Minos (%s %s %s)\\n\\n" "$(uname -o)" "$(uname -r)" "$(uname -m)"
+    printf "\\nWelcome to Minos (%s %s %s)\\n\\n" "$(uname -o)" "$(uname -r)" "$(uname -m)"
 else
-    printf "Welcome to Minos %s LTS (%s %s %s)\\n\\n" "$VERSION_ID" "$(uname -o)" "$(uname -r)" "$(uname -m)"
+    printf "\\nWelcome to Minos %s LTS (%s %s %s)\\n\\n" "$VERSION_ID" "$(uname -o)" "$(uname -r)" "$(uname -m)"
 fi
