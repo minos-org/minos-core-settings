@@ -1,6 +1,9 @@
 #This file is part of the minos-core-settings package
 
 [ -f "$(command -v "wcd")" ]       && alias cd='. wcd'
+[ -f "$(command -v "commacd")" ]   && . commacd #alias ,='. commacd' && alias ,,='. commacd' && alias ,,,='. commacd'
+[ -f "$(command -v "extract")" ]   && alias e='extract'
+[ -f "$(command -v "compress")" ]  && alias c='compress'
 [ -f "$(command -v "trash")" ]     && alias rm='trash'
 [ -f "$(command -v "xdg-open")" ]  && alias open='xdg-open'
 [ -f "${HOME}/.irssi/config.gpg" ] && alias irssi='irssi --config=<(gpg -d "${HOME}"/.irssi/config.gpg)'
