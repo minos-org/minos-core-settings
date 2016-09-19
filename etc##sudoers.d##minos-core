@@ -1,6 +1,7 @@
 #This file is part of the minos-core-settings package
 
 Defaults	insults,timestamp_timeout=60
+Defaults	!tty_tickets
 
 Cmnd_Alias MINOS_SESSION=/usr/sbin/pm-suspend,/usr/sbin/pm-hibernate,/sbin/shutdown
 Cmnd_Alias MINOS_BACKUP=/usr/bin/backup_remote_rsync
