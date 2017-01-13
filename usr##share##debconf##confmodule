@@ -1,0 +1,34 @@
+#!/bin/sh
+#While abusing apt some maintainer postinst scripts fail to
+#run debconf due to missing file descriptors, eg:
+#https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=439763
+#http://help-cfengine.narkive.com/foRdaZbB/shellcommands-3-bad-file-descriptor
+#https://bugs.launchpad.net/ubuntu/+source/cloud-init/+bug/961142
+
+#replace db_* functions as a nasty workaround
+db_capb ()               { return 0; }
+db_set ()                { return 0; }
+db_reset ()              { return 0; }
+db_title ()              { return 0; }
+db_input ()              { return 0; }
+db_beginblock ()         { return 0; }
+db_endblock ()           { return 0; }
+db_go ()                 { return 0; }
+db_get ()                { return 0; }
+db_register ()           { return 0; }
+db_unregister ()         { return 0; }
+db_subst ()              { return 0; }
+db_fset ()               { return 0; }
+db_fget ()               { return 0; }
+db_purge ()              { return 0; }
+db_metaget ()            { return 0; }
+db_version ()            { return 0; }
+db_clear ()              { return 0; }
+db_settitle ()           { return 0; }
+db_previous_module ()    { return 0; }
+db_info ()               { return 0; }
+db_progress ()           { return 0; }
+db_data ()               { return 0; }
+db_x_loadtemplatefile () { return 0; }
+db_text ()               { return 0; }
+db_stop ()               { return 0; }
