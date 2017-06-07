@@ -44,4 +44,4 @@ This repository provides minimal settings which gives to minos its identity. It'
 
 ## Feedback
 
-Please drop me an [email](mailto:m@javier.io) with your suggestions or open [an issue](https://github.com/minos-org/bash-minos-settings/issues) with your comments.
+Please drop me an [email](mailto:m@javier.io) with your suggestions or open [an issue](https://github.com/minos-org/minos-core-settings/issues) with your comments.

@@ -28,6 +28,7 @@
     d       = diff
     cm      = commit
     cmv     = commit -v
+    s       = show
     st      = status
     br      = branch
     co      = checkout
@@ -55,3 +56,7 @@
    ;2. When using git pull on the master branch, with no remote and
       ;branch specified, use the default remote (origin) and merge in
       ;the changes from the master branch.
+[push]
+	default = matching
+[credential]
+	helper = cache --timeout=3600
