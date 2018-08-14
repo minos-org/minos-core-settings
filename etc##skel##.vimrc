@@ -79,7 +79,7 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         "cutils#CUSetProperties
         let g:cutils_map_longlines      = '<leader>cul'
         let g:cutils_map_appendmodeline = '<leader>am'
-    Bundle 'javier-lopez/colors.vim' "colorschemes collection
+    Bundle 'javier-lopez/colors.vim' "favorite color schemes
         if isdirectory(expand("~/.vim/bundle/colors.vim/"))
             set background=dark
             silent! colorscheme hemisu
@@ -89,8 +89,8 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
                 "set gfn=Monospace\ 9
             endif
         endif
-    Bundle 'mhinz/vim-hugefile'  "huge files optimizer, disable expansive vim features
-    Bundle 'mhinz/vim-signify'   "git|svn|etc modification viewer
+    Bundle 'mhinz/vim-hugefile'   "huge files optimizer, disable expansive vim features
+    Bundle 'mhinz/vim-signify'    "git|svn|etc modification viewer
         let g:signify_vcs_list    = [ 'git' ]
         let g:signify_sign_add    = '+'
         let g:signify_sign_change = '~'
@@ -108,6 +108,7 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         let g:syntastic_python_python_exec       = "python2"
         let g:syntastic_html_tidy_exec           = "tidy"
         let g:syntastic_auto_jump                = 2
+        let g:syntastic_ignore_files             = ['\mVagrantfile$']
         "let g:syntastic_error_symbol            = "E!"
         "let g:syntastic_warning_symbol          = "W"
     Bundle 'tpope/vim-repeat'               , { 'on': 'delay' } "repeat|. support for plugins
@@ -119,38 +120,102 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         " cs"'  => replace surrounding quotes with single quotes
         " ysiw' => wrap word in surrounding single quotes
     Bundle 'paradigm/TextObjectify'         , { 'on': 'delay 3' } "define additional text :h objects
-    Bundle 'henrik/vim-indexed-search'      , { 'on': 'delay 3' } "count and index search results
+    Bundle 'google/vim-searchindex'         , { 'on': 'delay 3' } "count and index search results
     Bundle 'pbrisbin/vim-mkdir'             , { 'on': 'delay 3' } "create missing directories on saving
 
     "=================================
     "==== Lazy loading on action =====
     "=================================
-    Bundle 'javier-lopez/sprunge.vim'     , { 'on': ['<Plug>Sprunge'] }  "pastebin client
-        map <leader>s <Plug>Sprunge
-        let g:sprunge_flush_left = 1
     "colorscheme manager
-    Bundle 'javier-lopez/nextCS.vim'      , { 'on': ['<Plug>NextCS', '<Plug>PreviousCS'] }
+    Bundle 'javier-lopez/nextCS.vim'   , { 'on': ['<Plug>NextCS', '<Plug>PreviousCS'] }
         map <F12> <Plug>NextCS
         map <F11> <Plug>PreviousCS
-    Bundle 'javier-lopez/checksum.vim'    , { 'on': ['<Plug>Checksum'] } "checksum generator
-        map <leader>c <Plug>Checksum
-    Bundle 'javier-lopez/x-modes.vim'     , { 'on': [ '<Plug>XDevelopmentMode', '<Plug>XWriteMode', 'XWriteMode', '<Plug>XPresentationMode'] }
+    "write/dev/presentation modes
+    Bundle 'javier-lopez/x-modes.vim'  , { 'on': [ '<Plug>XDevelopmentMode', '<Plug>XWriteMode', '<Plug>XPresentationMode', 'XWriteMode'] }
         map <silent> <leader>D <Plug>XDefaultMode
         map <silent> <leader>d <Plug>XDevelopmentMode
         map <silent> <leader>w <Plug>XWriteMode
         map <silent> <leader>p <Plug>XPresentationMode
+    "snippet support
+    Bundle 'javier-lopez/snipmate.vim' , { 'on': 'insert' }
+        let g:snippets_dir             = "~/.vim/bundle/snippets.vim/snipmate/"
+        let g:snipmate_default_choice  = 1
+    Bundle 'javier-lopez/snippets.vim' , { 'on': 'insert' }
 
-    Bundle 'scrooloose/nerdtree'       , { 'on': 'NERDTreeToggle' } "file viewer
+    "autocompletion
+    Bundle 'Shougo/neocomplcache'      , { 'on': 'insert' }
+        let g:neocomplcache_enable_at_startup              = 1
+        let g:neocomplcache_max_list                       = 10
+        let g:neocomplcache_max_menu_width                 = 10
+        let g:neocomplcache_auto_completion_start_length   = 4
+        let g:neocomplcache_manual_completion_start_length = 4
+        let g:neocomplcache_enable_auto_select             = 1
+        let g:neocomplcache_enable_auto_delimiter          = 1
+        let g:neocomplcache_disable_auto_complete          = 0
+        let g:neocomplcache_enable_wildcard                = 1
+        let g:neocomplcache_enable_caching_message         = 1
+    "undo navigation bar
+    Bundle 'mbbill/undotree' , { 'on': 'UndotreeToggle' }
+        map <leader>u :UndotreeToggle<cr>
+
+    "modern buffer manager
+    "Bundle 'zefei/vim-wintabs'
+
+   "file viewer
+    Bundle 'scrooloose/nerdtree'       , { 'on': ['NERDTreeToggle', '<Plug>NERDTreeTabsToggle']}
         let g:NERDTreeWinPos           = 'right'
         let g:NERDTreeWinSize          = 25
         let g:NERDTreeMouseMode        = 3
+        let g:NERDTreeMinimalUI        = 1
+        let g:NERDTreeDirArrows        = 1
         "let g:NERDTreeMapOpenSplit    = "-"
         "let g:NERDTreeMapOpenVSplit   = "|"
-        map <silent> <leader>n  :NERDTreeToggle<cr>
+        "map <silent> <leader>n  :NERDTreeToggle<cr>
+        "https://stackoverflow.com/questions/11227721/make-nerdtree-open-a-file-where-the-cursor-was-last
+        "set hidden
+    "toggle comments
+    Bundle 'jistr/vim-nerdtree-tabs'   ", { 'on': '<Plug>NERDTreeTabsToggle' }
+        map <silent> <leader>n  <Plug>NERDTreeTabsToggle<cr>
     Bundle 'scrooloose/nerdcommenter'  , {'on': ['<Plug>NERDCommenterToggle', '<Plug>NERDCommenterSexy'] }
         map <leader>c<space> <Plug>NERDCommenterToggle
         map <leader>cs       <Plug>NERDCommenterSexy
-        let g:NERDCustomDelimiters  = {'mkd': { 'left': '<!--', 'right': '-->'}}
+        let g:NERDCustomDelimiters  = {'mkd':    {'left':'<!--', 'right':'-->'},
+                                      \'jinja2': {'left':'{# ',  'right':' #}'},
+                                      \}
+    "pastebin client
+    Bundle 'javier-lopez/sprunge.vim'  , { 'on': ['<Plug>Sprunge'] }
+        map <leader>s <Plug>Sprunge
+        let g:sprunge_providers = 'ix,sprunge'
+        let g:sprunge_flush_left = 1
+    "checksum generator
+    Bundle 'javier-lopez/checksum.vim' , { 'on': ['<Plug>Checksum'] }
+        map <leader>c <Plug>Checksum
+
+    "fuzzy file|buffer|etc finder
+    Bundle 'kien/ctrlp.vim'      , { 'on': ['CtrlP', 'CtrlPBuffer', 'CtrlPMixed'] }
+    "Bundle 'ctrlpvim/ctrlp.vim' , { 'on': ['CtrlP', 'CtrlPBuffer', 'CtrlPMixed'] } "active fork
+        "let g:ctrlp_cache_dir          = $HOME.'/.cache/ctrlp'
+        let g:ctrlp_use_caching         = 1
+        let g:ctrlp_clear_cache_on_exit = 0
+        let g:ctrlp_working_path        = 0
+        let g:ctrlp_match_window        = 'bottom,order:ttb,min:1,max:10,results:100'
+        let g:ctrlp_extensions          = ['smarttabs']
+        let g:ctrlp_map                 = '<leader>f'
+        map <leader>f                   :CtrlP<CR>
+        map <leader>b                   :CtrlPBuffer<CR>
+        if has('python')
+            let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+        endif
+        if executable("ag")
+            let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup
+            \ --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store
+            \ --ignore *.pyc --ignore *.mp3 --ignore *.png --ignore *.jpg -g ""'
+        endif
+    Bundle 'DavidEGx/ctrlp-smarttabs' , { 'on': ['CtrlPSmartTabs'] }
+        let g:ctrlp_smarttabs_reverse        = 0
+        let g:ctrlp_smarttabs_modify_tabline = 0
+        map <leader>t :call vundle#load('ctrlp.vim')<cr>:CtrlPSmartTabs<cr>
+    Bundle 'FelikZ/ctrlp-py-matcher'  , { 'on': 'delay 5' }
 
     "class/function/var browser
     Bundle 'majutsushi/tagbar' , { 'on': 'TagbarToggle', 'do': 'wget --no-check-certificate https://raw.githubusercontent.com/javier-lopez/learn/master/python/tools/mkd2ctags && chmod +x mkd2ctags' }
@@ -167,11 +232,9 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
             \ ],
             \ 'sort': 0
         \ }
-        map <silent> <leader>l    :TagbarToggle<cr>
-
-    Bundle 'mbbill/undotree'           , { 'on': 'UndotreeToggle' } "undo navigation bar
-        map <leader>u :UndotreeToggle<cr>
-    Bundle 'mileszs/ack.vim'           , { 'on': ['Ack'] } "grep|ag search integration
+        map <silent> <leader>l :TagbarToggle<cr>
+    "grep|ag search integration
+    Bundle 'mileszs/ack.vim' , { 'on': ['Ack'] }
         "let g:ackpreview = 1
         let g:ackhighlight = 1
         let g:ack_mappings = { "O": "<CR>zz", "o": "<CR>zz:ccl<CR>", "p": "<CR>zz<C-W>p", "i": "<C-W><CR><C-W>x<C-W>p", }
@@ -182,65 +245,30 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         else
             let g:ackprg = "grep -rni --exclude-dir={.git,.svn,.bzr,.hg,.pc,CVS} --binary-files=without-match . -e"
         endif
+
+    "mv at the speed of light
     Bundle 'Lokaltog/vim-easymotion'  , { 'on': ['<Plug>(easymotion-prefix)'] }
         "let g:EasyMotion_leader_key  = '<leader><leader>'
         map <leader><leader>          <Plug>(easymotion-prefix)
         let g:EasyMotion_keys         = 'asdfghjklqwertyuiopzxcvbnm'
-
-    Bundle 'junegunn/goyo.vim'         , { 'on': 'Goyo' } "zen write mode
-    Bundle 'junegunn/limelight.vim'    , { 'on': 'Limelight' } "hyperfocus
-        autocmd! User GoyoEnter Limelight
-        autocmd! User GoyoLeave Limelight!
     "align columns on characters
-    Bundle 'junegunn/vim-easy-align' , { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
+    Bundle 'junegunn/vim-easy-align'  , { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
         "command! -nargs=* -range -bang Align
         "\ <line1>,<line2>call easy_align#align('<bang>' == '!', 0, '', <q-args>)
         command! -nargs=* -range -bang Align <line1>,<line2>EasyAlign
         vmap . <Plug>(EasyAlignRepeat)
         nmap <leader>a <Plug>(EasyAlign)
+    "tmux like zoom panel
+    Bundle 'szw/vim-maximizer', { 'on': ['MaximizerToggle'] }
+        let g:maximizer_set_default_mapping = 0
+        map <Leader>z :MaximizerToggle<CR>
 
-    "fuzzy file|buffer|etc finder
-    Bundle 'kien/ctrlp.vim'      , { 'on': ['CtrlP', 'CtrlPBuffer', 'CtrlPMixed'] }
-    "Bundle 'ctrlpvim/ctrlp.vim' , { 'on': ['CtrlP', 'CtrlPBuffer', 'CtrlPMixed'] } "active fork
-        "let g:ctrlp_cache_dir          = $HOME.'/.cache/ctrlp'
-        let g:ctrlp_use_caching         = 1
-        let g:ctrlp_clear_cache_on_exit = 0
-        let g:ctrlp_working_path        = 0
-        let g:ctrlp_match_window        = 'bottom,order:ttb,min:1,max:10,results:100'
-        let g:ctrlp_extensions          = ['smarttabs']
-        " let g:ctrlp_map               = '<leader>f'
-        map <leader>f                   :CtrlP<cr>
-        map <leader>b                   :CtrlPBuffer<cr>
-        if has('python') | let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' } | endif
-        if executable("ag")
-            let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup
-            \ --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store
-            \ --ignore *.pyc --ignore *.mp3 --ignore *.png --ignore *.jpg -g ""'
-        endif
-    Bundle 'DavidEGx/ctrlp-smarttabs' , { 'on': ['CtrlPSmartTabs'] }
-        let g:ctrlp_smarttabs_reverse        = 0
-        let g:ctrlp_smarttabs_modify_tabline = 0
-        map <leader>t :call vundle#load('ctrlp.vim')<cr>:CtrlPSmartTabs<cr>
-    Bundle 'FelikZ/ctrlp-py-matcher'  , { 'on': 'delay 5' }
-
-    Bundle 'javier-lopez/snipmate.vim' , { 'on': 'insert' } "snippet support
-        let g:snips_author            = "Javier Lopez"
-        let g:snips_authorEmail       = "m@javier.io"
-        let g:snippets_dir            = "~/.vim/bundle/snippets.vim/snipmate/"
-        let g:snipmate_default_choice = 1
-    Bundle 'javier-lopez/snippets.vim' , { 'on': 'insert' } "snippet definitions
-
-    Bundle 'Shougo/neocomplcache'   , { 'on': 'insert' } "autocompletion
-        let g:neocomplcache_enable_at_startup              = 1
-        let g:neocomplcache_max_list                       = 10
-        let g:neocomplcache_max_menu_width                 = 10
-        let g:neocomplcache_auto_completion_start_length   = 4
-        let g:neocomplcache_manual_completion_start_length = 4
-        let g:neocomplcache_enable_auto_select             = 1
-        let g:neocomplcache_enable_auto_delimiter          = 1
-        let g:neocomplcache_disable_auto_complete          = 0
-        let g:neocomplcache_enable_wildcard                = 1
-        let g:neocomplcache_enable_caching_message         = 1
+    "zen write mode
+    Bundle 'junegunn/goyo.vim'        , { 'on': 'Goyo' }
+    "hyperfocus
+    Bundle 'junegunn/limelight.vim'   , { 'on': 'Limelight' }
+        autocmd! User GoyoEnter Limelight
+        autocmd! User GoyoLeave Limelight!
 
     "=================================
     "========== Experimental =========
@@ -249,6 +277,19 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         map <Leader>N <Plug>RelativeNumberToggle
     "better syntax support
     Bundle 'sheerun/vim-polyglot' , { 'do': 'cd syntax; cp markdown.vim mkd.vim' }
+    Bundle 'javier-lopez/vim-restructuredtext'
+        let g:rst_syntax_code_list = {
+            \ 'vim':        ['vim'],
+            \ 'java':       ['java'],
+            \ 'cpp':        ['cpp', 'c++'],
+            \ 'lisp':       ['lisp'],
+            \ 'php':        ['php'],
+            \ 'python':     ['python'],
+            \ 'yaml':       ['yaml'],
+            \ 'perl':       ['perl'],
+            \ 'sh':         ['sh'],
+            \ 'dockerfile': ['docker', 'dockerfile'],
+            \ }
     Bundle 'junegunn/vim-peekaboo' "preview registers
     Bundle 'gastonsimone/vim-dokumentary' "documentation viewer (K in normal mode)
     Bundle 'ap/vim-css-color'      "colorize #hex, rgb tags
@@ -258,19 +299,32 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         "let g:vim_g_query_url    = "http://google.com/search?q="
         "let g:vim_g_command      = "Google"
         "let g:vim_g_f_command    = "Googlef"
-    Bundle 'KabbAmine/lazyList.vim', { 'on': 'delay' } "helps creating lists
-        let g:lazylist_maps = [ 'gl', { 'l': '', '1': '%1% ', '-': '- ', '*': '* ' } ]
-    Bundle 'junegunn/vader.vim'  , { 'on': ['Vader'] }   "vim tdd
+    Bundle 'dkarter/bullets.vim', { 'on': 'delay' } "helps creating lists
+    "Bundle 'KabbAmine/lazyList.vim', { 'on': 'delay' } "helps creating lists
+        "let g:lazylist_maps = [ 'gl', { 'l': '', '1': '%1% ', '-': '- ', '*': '* ' } ]
+    Bundle 'junegunn/vader.vim'  , { 'on': ['Vader'], 'for': 'vader' } "vim tdd
     Bundle 'Olical/vim-enmasse'  , { 'on': ['EnMasse'] } "edit quicklist results, grep/ag
     Bundle 'wting/gitsessions.vim'  , { 'on': ['GitSessionSave', 'GitSessionDelete'] }
         command! -nargs=* SessionSave   GitSessionSave
         command! -nargs=* SessionDelete GitSessionDelete
         let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
-    Bundle 'alvan/vim-closetag'  , { 'on': 'insert' }    "autoclose xml|html tags
+    Bundle 'alvan/vim-closetag'    , { 'on': 'insert' } "autoclose xml|html tags
+    Bundle 'javier-lopez/vlide.vim', { 'on': [ 'Vlide', 'VlideReferenceSlide' ] }
+    "Bundle 'jaxbot/semantic-highlight.vim'
     "Bundle 'Two-Finger/hardmode' "use vim the right way
         "let g:hardmode = 1
         "nnoremap <Leader>H <Esc>:call ToggleHardMode()<CR>
     "Bundle 'cohama/lexima.vim'  , { 'on': 'delay 3' } "autocomplete pairs, <Enter> smash with Shougo/neocomplcache
+    "Bundle 'vim-scripts/DrawIt'
+    "Bundle 'gyim/vim-boxdraw'
+    Bundle 'mattn/emmet-vim'
+        "let g:user_emmet_leader_key = '<C-h>'  "[h]tml
+        "let g:user_emmet_leader_key = '<C-e>' "[e]mmet
+        let g:user_emmet_install_global = 0
+        let g:user_emmet_expandabbr_key = '<C-y>e'
+        let g:user_emmet_expandword_key = '<C-y>E'
+        autocmd FileType html,css EmmetInstall
+    Bundle 'javier-lopez/math.vim', { 'on': ['VimSum'] }
 
     "=================================
     "============ Discarted ==========
