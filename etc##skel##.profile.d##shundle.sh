@@ -31,3 +31,5 @@ else
     . ~/.bashrc && ~/.shundle/bundle/shundle/bin/shundle install   && \
     bash'
 fi
+
+[ -f ~/.credentials ] && . ~/.credentials

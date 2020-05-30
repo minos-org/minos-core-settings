@@ -105,7 +105,7 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         let g:syntastic_auto_loc_list            = 1
         let g:syntastic_check_on_open            = 1
         let g:syntastic_check_on_wq              = 0
-        let g:syntastic_python_python_exec       = "python2"
+        let g:syntastic_python_python_exec       = "python3.7"
         let g:syntastic_html_tidy_exec           = "tidy"
         let g:syntastic_auto_jump                = 2
         let g:syntastic_ignore_files             = ['\mVagrantfile$']
@@ -154,6 +154,8 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         let g:neocomplcache_disable_auto_complete          = 0
         let g:neocomplcache_enable_wildcard                = 1
         let g:neocomplcache_enable_caching_message         = 1
+    Bundle 'davidhalter/jedi-vim' "python autocompletion
+        let g:jedi#show_call_signatures = "2"
     "undo navigation bar
     Bundle 'mbbill/undotree' , { 'on': 'UndotreeToggle' }
         map <leader>u :UndotreeToggle<cr>
@@ -166,7 +168,7 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         let g:NERDTreeWinPos           = 'right'
         let g:NERDTreeWinSize          = 25
         let g:NERDTreeMouseMode        = 3
-        let g:NERDTreeMinimalUI        = 1
+        let g:NERDTreeMinimalUI        = 0
         let g:NERDTreeDirArrows        = 1
         "let g:NERDTreeMapOpenSplit    = "-"
         "let g:NERDTreeMapOpenVSplit   = "|"
@@ -283,10 +285,13 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
             \ 'java':       ['java'],
             \ 'cpp':        ['cpp', 'c++'],
             \ 'lisp':       ['lisp'],
+            \ 'dosini':     ['dosini', 'ini'],
+            \ 'jinja2':     ['jinja2', 'j2'],
             \ 'php':        ['php'],
             \ 'python':     ['python'],
             \ 'yaml':       ['yaml'],
             \ 'perl':       ['perl'],
+            \ 'ruby':       ['ruby'],
             \ 'sh':         ['sh'],
             \ 'dockerfile': ['docker', 'dockerfile'],
             \ }
@@ -321,10 +326,14 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
         "let g:user_emmet_leader_key = '<C-h>'  "[h]tml
         "let g:user_emmet_leader_key = '<C-e>' "[e]mmet
         let g:user_emmet_install_global = 0
-        let g:user_emmet_expandabbr_key = '<C-y>e'
-        let g:user_emmet_expandword_key = '<C-y>E'
+        let g:user_emmet_leader_key='<C-e>'
+        let g:user_emmet_expandabbr_key = '<C-e>e'
+        let g:user_emmet_expandword_key = '<C-e>E'
         autocmd FileType html,css EmmetInstall
-    Bundle 'javier-lopez/math.vim', { 'on': ['VimSum'] }
+    Bundle 'javier-lopez/math.vim',    { 'on': ['VimSum'] }
+    Bundle 'liuchengxu/vim-which-key', { 'on': ['WhichKey'] }
+        nnoremap <silent> <leader> :WhichKey '<leader>'<CR>
+        set timeoutlen=500
 
     "=================================
     "============ Discarted ==========
