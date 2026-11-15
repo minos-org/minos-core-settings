@@ -6,10 +6,10 @@
     local   = yellow
     remote  = green
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old  = red bold
-    new  = green bold
+	meta = 11
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [color "status"]
     added     = yellow
     changed   = green
@@ -18,9 +18,10 @@
 ;Highlight whitespace in diffs
 
 [color]
-    ui = always
+	ui = true
 [color "diff"]
-    whitespace = red reverse
+	whitespace = red reverse
+	commit = yellow bold
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
@@ -36,27 +37,21 @@
     last    = log -1 HEAD
     praise  = blame
     discart = checkout --
-    glog    = log --all --pretty = 'format:%d %Cgreen%h%Creset %an - %s' --graph
+    glog    = log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
 
 [core]
     editor = vim
+	pager = "if command -v diff-so-fancy >/dev/null; then diff-so-fancy; else cat; fi | if command -v less >/dev/null; then less --tabs=4 -RFX; else more; fi"
 
 [merge]
     tool = vimdiff
 
-[branch "master"]
-    remote = origin
-    merge  = refs/heads/master
-
-    ;http://tinyurl.com/yeevhcr
-    ;This tells Git 2 things:
-
-   ;1. When you're on the master branch, the default remote is origin.
-
-   ;2. When using git pull on the master branch, with no remote and
-      ;branch specified, use the default remote (origin) and merge in
-      ;the changes from the master branch.
 [push]
-	default = matching
+	default = simple
 [credential]
 	helper = cache --timeout=3600
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22

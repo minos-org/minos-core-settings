@@ -143,19 +143,27 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
     Bundle 'javier-lopez/snippets.vim' , { 'on': 'insert' }
 
     "autocompletion
-    Bundle 'Shougo/neocomplcache'      , { 'on': 'insert' }
-        let g:neocomplcache_enable_at_startup              = 1
-        let g:neocomplcache_max_list                       = 10
-        let g:neocomplcache_max_menu_width                 = 10
-        let g:neocomplcache_auto_completion_start_length   = 4
-        let g:neocomplcache_manual_completion_start_length = 4
-        let g:neocomplcache_enable_auto_select             = 1
-        let g:neocomplcache_enable_auto_delimiter          = 1
-        let g:neocomplcache_disable_auto_complete          = 0
-        let g:neocomplcache_enable_wildcard                = 1
-        let g:neocomplcache_enable_caching_message         = 1
-    Bundle 'davidhalter/jedi-vim' "python autocompletion
-        let g:jedi#show_call_signatures = "2"
+    if ( (has('win32') || has('win64')) && v:version >= 900 )
+        Bundle 'vim-scripts/AutoComplPop' , { 'on': 'insert' }
+            let g:acp_behaviorKeywordLength    = 4
+            let g:acp_mappingDriven            = 1
+            let g:acp_completeOption           = '.,w,b,t,k,i,d'
+            let g:acp_completeoptPreview       = 1
+            let g:acp_behaviorSnipmateLength   = 2
+            let g:acp_behaviorPythonOmniLength = -1
+    else
+        Bundle 'Shougo/neocomplcache' , { 'on': 'insert' }
+            let g:neocomplcache_enable_at_startup              = 1
+            let g:neocomplcache_max_list                       = 10
+            let g:neocomplcache_max_menu_width                 = 10
+            let g:neocomplcache_auto_completion_start_length   = 4
+            let g:neocomplcache_manual_completion_start_length = 4
+            let g:neocomplcache_enable_auto_select             = 1
+            let g:neocomplcache_enable_auto_delimiter          = 1
+            let g:neocomplcache_disable_auto_complete          = 0
+            let g:neocomplcache_enable_wildcard                = 1
+            let g:neocomplcache_enable_caching_message         = 1
+    endif
     "undo navigation bar
     Bundle 'mbbill/undotree' , { 'on': 'UndotreeToggle' }
         map <leader>u :UndotreeToggle<cr>
@@ -275,8 +283,8 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
     "=================================
     "========== Experimental =========
     "=================================
-    Bundle 'javier-lopez/relative-number.vim'
-        map <Leader>N <Plug>RelativeNumberToggle
+    "Bundle 'javier-lopez/relative-number.vim'
+        "map <Leader>N <Plug>RelativeNumberToggle
     "better syntax support
     Bundle 'sheerun/vim-polyglot' , { 'do': 'cd syntax; cp markdown.vim mkd.vim' }
     Bundle 'javier-lopez/vim-restructuredtext'
@@ -340,13 +348,6 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
     "=================================
     "Bundle 'javier-lopez/taglist.vim'      "tagbar looks better
     "Bundle 'FindMate'                      "ctrlp.vim ftw!
-    "Bundle 'vim-scripts/AutoComplPop'      "neocomplcache is better
-        "let g:acp_behaviorKeywordLength    = 4
-        "let g:acp_mappingDriven            = 1
-        "let g:acp_completeOption           = '.,w,b,t,k,i,d'
-        "let g:acp_completeoptPreview       = 1
-        "let g:acp_behaviorSnipmateLength   = 2
-        "let g:acp_behaviorPythonOmniLength = -1
     "Bundle 'Lokaltog/vim-powerline'        "prefer my own powerline =)
         "let g:Powerline_cache_enabled = 1
         "let g:Powerline_symbols = 'compatible' "compatible, unicode, fancy

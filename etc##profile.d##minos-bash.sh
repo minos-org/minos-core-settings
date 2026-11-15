@@ -20,25 +20,38 @@ bind "set bind-tty-special-chars on"  #punctuations are not word delimiters
 bind "set show-all-if-ambiguous on"   #enable single tab completion
 bind "set completion-ignore-case on"
 
+if [ -z "${BASH_COMPLETION_VERSINFO-}" ] && ! shopt -oq posix; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
+fi
+
+#/etc/terminfo/*
+#export TERM="xterm-color"
+#export TERM="xterm-256color"
+
 #===============================================================================
 #=============================== Environment  ==================================
 #===============================================================================
 
-export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin/X11:/usr/games"
+[ -d "$HOME/bin" ]        && export PATH="${HOME}/bin:${PATH}"
+[ -d "$HOME/.local/bin" ] && export PATH="${HOME}/.local/bin:${PATH}"
+[ -d "$HOME/.bin" ]       && export PATH="${HOME}/.bin:${PATH}"
 
 export GPG_TTY="$(tty)"
 
 export EDITOR="editor"
-export CSCOPE_EDITOR="editor"
-export WCDHOME="${HOME}/.wcd"
+export CSCOPE_EDITOR="$EDITOR"
 export BROWSER="x-www-browser"
 
 #fix java ugliness
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
-if [ -f "$(command -v "ccache")" ]; then
+if command -v "ccache" >/dev/null 2>&1; then
     export PATH="${PATH}:/usr/lib/ccache"
     export CCACHE_DIR="${HOME}/.ccache"
     export CCACHE_SIZE="2G"
-    #export CCACHE_PREFIX="distcc"
 fi
+

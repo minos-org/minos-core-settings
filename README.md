@@ -12,7 +12,7 @@ This repository provides minimal settings which gives to minos its identity. It'
 - Sudo settings:
  - turn on sudo insults
  - set a longer (1hr) timeout
- - bypass password authentication for shutdown/hibernate/wakeup
+ - bypass password authentication for rtcwake and the remote backup
 
 - Ssh:
  - connection sharing, improve performance and general resiliance
